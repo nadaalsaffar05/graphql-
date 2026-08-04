@@ -167,7 +167,7 @@ async function loadProjects() {
 
     gradesTableElement.innerHTML = "";
 
-    const recentProjects = Array.from(uniqueProjects.values()).slice(0, 10);
+    const recentProjects = Array.from(uniqueProjects.values());
 
     recentProjects.forEach(project => {
         const row = document.createElement("tr");
@@ -228,7 +228,9 @@ async function loadCurrentLevel() {
     {
         transaction(
             where: { type: { _eq: "level" } }
-            order_by: { createdAt: desc }
+            order_by: [ { createdAt: desc }
+            { amount: desc }
+]
             limit: 1
         ) {
             amount
