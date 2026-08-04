@@ -4,6 +4,12 @@ A small profile dashboard made with HTML, CSS, JavaScript, and GraphQL.
 
 After signing in with a Reboot account, the page shows the student's profile information, XP, completed projects, audit ratio, level, charts, and recent project grades.
 
+## Live Demo
+
+The project is deployed with GitHub Pages and can be viewed online without any local setup:
+
+**https://nadaalsaffar05.github.io/graphql-**
+
 ## Features
 
 - Login with username/email and password
@@ -14,6 +20,7 @@ After signing in with a Reboot account, the page shows the student's profile inf
 - Recent project grades table
 - Responsive layout for desktop and mobile
 - Logout button
+
 
 ## How to run it
 
@@ -29,7 +36,7 @@ Do not put your password or token in the code. The token is saved in the browser
 - `index.html`: login page
 - `profile.html`: dashboard page
 - `css/`
-  - `login.css`: login-page styles
+  - `login.css`: login page styles
   - `profile.css`: dashboard styles
 - `js/`
   - `auth.js`: sign-in logic
@@ -44,7 +51,3 @@ The project uses these Reboot endpoints:
 
 - `https://learn.reboot01.com/api/auth/signin`
 - `https://learn.reboot01.com/api/graphql-engine/v1/graphql`
-
-## XP note
-
-The XP total in this dashboard may be different from the total shown on Intra. Intra excludes many checkpoint exercises and the full Go piscine, while this project includes those XP transactions in its calculation.
