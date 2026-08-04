@@ -19,14 +19,14 @@ After signing in with a Reboot account, the page shows the student's profile inf
 
 1. Clone or download this repository.
 2. Open the folder in VS Code.
-3. Run `login.html` using Live Server (or another local web server).
+3. Run `index.html` using Live Server (or another local web server).
 4. Sign in with your Reboot account.
 
 Do not put your password or token in the code. The token is saved in the browser's local storage after a successful login.
 
 ## Project structure
 
-- `login.html`: login page
+- `index.html`: login page
 - `profile.html`: dashboard page
 - `css/`
   - `login.css`: login-page styles

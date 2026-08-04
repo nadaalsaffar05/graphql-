@@ -1,7 +1,7 @@
 const savedToken = localStorage.getItem("token");
 
 if (!savedToken) {
-    window.location.href = "login.html";
+    window.location.href = "index.html";
 }
 
 
@@ -375,6 +375,6 @@ logoutButton.addEventListener("click", () => {
 
     localStorage.removeItem("token");
 
-    window.location.href = "login.html";
+    window.location.href = "index.html";
 
 });
