@@ -1,0 +1,49 @@
+# GraphQL Profile
+
+A small profile dashboard made with HTML, CSS, JavaScript, and GraphQL.
+
+After signing in with a Reboot account, the page shows the student's profile information, XP, completed projects, audit ratio, level, charts, and recent project grades.
+
+## Features
+
+- Login with username/email and password
+- GraphQL requests with the saved authentication token
+- Total XP with an XP progress chart
+- Project pass/fail/pending chart
+- Completed-project count, audit ratio, and current level
+- Recent project grades table
+- Responsive layout for desktop and mobile
+- Logout button
+
+## How to run it
+
+1. Clone or download this repository.
+2. Open the folder in VS Code.
+3. Run `login.html` using Live Server (or another local web server).
+4. Sign in with your Reboot account.
+
+Do not put your password or token in the code. The token is saved in the browser's local storage after a successful login.
+
+## Project structure
+
+```text
+Graphql/
+|-- login.html          # Login page
+|-- profile.html        # Dashboard page
+|-- css/
+|   |-- login.css
+|   `-- profile.css
+|-- js/
+|   |-- auth.js         # Sign-in logic
+|   |-- graphql.js      # GraphQL request helper
+|   |-- profile.js      # Loads profile data
+|   `-- charts.js       # SVG charts
+`-- assets/images/      # Page images
+```
+
+## API
+
+The project uses these Reboot endpoints:
+
+- `https://learn.reboot01.com/api/auth/signin`
+- `https://learn.reboot01.com/api/graphql-engine/v1/graphql`

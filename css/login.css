@@ -1,0 +1,88 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    color: #5b2547;
+    background:
+        radial-gradient(circle at 12% 18%, #fff6b7 0 80px, transparent 82px),
+        radial-gradient(circle at 88% 20%, #cfc1ff 0 125px, transparent 127px),
+        radial-gradient(circle at 75% 84%, #ffc6df 0 145px, transparent 147px),
+        linear-gradient(135deg, #fde8f3, #e9e3ff);
+}
+
+.login-container {
+    position: relative;
+    overflow: hidden;
+    width: min(400px, 90%);
+    padding: 78px 34px 38px;
+    text-align: center;
+    background: #fff8fc;
+    border: 4px solid #7b2d58;
+    border-radius: 24px;
+    box-shadow: 10px 10px 0 #e9a5c8;
+}
+
+.login-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 13px 20px;
+    background:
+        url("../assets/images/star.png") -5px center / 65px auto no-repeat,
+        url("../assets/images/star.png") 15px center / 65px auto no-repeat,
+        url("../assets/images/star.png") 35px center / 65px auto no-repeat,
+        #a995e8;
+    border-bottom: 3px solid #7b2d58;
+}
+
+h1 {
+    margin: 0 0 28px;
+    color: #7b2d58;
+}
+
+input, button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 14px;
+    font-size: 16px;
+    border: 3px solid #7b2d58;
+    border-radius: 12px;
+}
+
+input {
+    display: block;
+    color: #5b2547;
+    background: #fff;
+}
+
+button {
+    color: #5b2547;
+    font-weight: bold;
+    background: #fff09c;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+}
+
+button:hover {
+    background: #f5d96c;
+    transform: translateY(-3px);
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+#error {
+    min-height: 20px;
+    margin: 12px 0 0;
+    color: #bd3f79;
+}

@@ -147,6 +147,21 @@ function drawXpChart(transactions) {
 
     svg.innerHTML = "";
 
+    const totalXP = transactions.reduce(
+        (total, transaction) => total + transaction.amount,
+        0
+    );
+
+    const chartTitle = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "text"
+    );
+
+    chartTitle.textContent = `Total XP: ${formatBytes(totalXP)}`;
+    chartTitle.setAttribute("x", 50);
+    chartTitle.setAttribute("y", 30);
+    chartTitle.setAttribute("font-weight", "bold");
+    svg.appendChild(chartTitle);
 
     // Group XP transactions by date
 
@@ -173,7 +188,7 @@ function drawXpChart(transactions) {
 
     // Create running XP total points
 
-    let totalXP = 0;
+    let runningXP = 0;
 
     const points = [];
 
@@ -183,14 +198,14 @@ function drawXpChart(transactions) {
         .forEach((date, index) => {
 
 
-            totalXP += xpByDate[date];
+            runningXP += xpByDate[date];
 
 
             points.push({
 
                 x: index,
 
-                y: totalXP,
+                y: runningXP,
 
                 date: date
 

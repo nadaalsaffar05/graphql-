@@ -18,15 +18,27 @@ const logoutButton = document.getElementById("logout-btn");
 let userId;
 
 
+function formatBytes(bytes) {
+    if (bytes === 0) return "0 Bytes";
+    const units = ["Bytes", "KB", "MB", "GB", "TB"];
+    const index = Math.floor(
+        Math.log(bytes) / Math.log(1000)
+    );
+    return `${Math.round(bytes / Math.pow(1000, index))} ${units[index]}`;
+}
+
+
 
 async function loadUserData() {
 
     const query = `
     {
-        user {
-            id
-            login
-        }
+  user {
+    id
+    login
+    firstName
+    lastName
+  }
     }`;
 
     const response = await fetchGraphQL(query);
@@ -36,7 +48,7 @@ async function loadUserData() {
     userId = item.id;
 
     userIdElement.textContent = item.id;
-    usernameElement.textContent = item.login;
+    usernameElement.textContent = `Welcome ${item.firstName} ${item.lastName}`;
 
 }
 
@@ -45,20 +57,43 @@ async function loadUserData() {
 async function loadXp() {
 
     const query = `
-    {
-        transaction(
-            where: {
-                type: {
-                    _eq: "xp"
-                }
-            }
-        ) {
-            amount
-            createdAt
+   {
+  transaction(
+    where: {
+      type: { _eq: "xp" }
+      _or: [
+        { object: { type: { _eq: "project" } } }
+        { object: { type: { _eq: "piscine" } } }
+        {
+          object: { type: { _eq: "exercise" } }
+          path: { _ilike: "%checkpoint%" }
         }
-    }`;
+      ]
+    }
+    order_by: { createdAt: desc }
+  ) {
+    id
+    amount
+    createdAt
+    path
+    object {
+      id
+      name
+      type
+    }
+  }
+}
+    `;
 
     const response = await fetchGraphQL(query);
+
+    console.log("loadXp raw response:", response);
+
+    if (!response.data) {
+        console.error("loadXp GraphQL error message:", response.errors?.[0]?.message);
+        console.error("loadXp full error object:", JSON.stringify(response.errors, null, 2));
+        return;
+    }
 
     const transactions = response.data.transaction;
 
@@ -68,7 +103,7 @@ async function loadXp() {
         totalXP += transaction.amount;
     });
 
-    xpElement.textContent = totalXP;
+    xpElement.textContent = formatBytes(totalXP);
     drawXpChart(transactions);
 
 }
@@ -299,15 +334,35 @@ async function loadCurrentLevel() {
 
 async function loadProfile() {
 
-    await loadUserData();
+    try {
+        await loadUserData();
+    } catch (err) {
+        console.error("loadUserData failed:", err);
+    }
 
-    await loadXp();
+    try {
+        await loadXp();
+    } catch (err) {
+        console.error("loadXp failed:", err);
+    }
 
-    await loadProjects();
+    try {
+        await loadProjects();
+    } catch (err) {
+        console.error("loadProjects failed:", err);
+    }
 
-    await loadAudit();
+    try {
+        await loadAudit();
+    } catch (err) {
+        console.error("loadAudit failed:", err);
+    }
 
-    await loadCurrentLevel();
+    try {
+        await loadCurrentLevel();
+    } catch (err) {
+        console.error("loadCurrentLevel failed:", err);
+    }
 
 }
 

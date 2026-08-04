@@ -4,56 +4,50 @@ const loginButton = document.getElementById("login-btn");
 const errorMessage = document.getElementById("error");
 
 
-loginButton.addEventListener("click", () => {
+loginButton.addEventListener("click", async () => {
 
-    const username = usernameInput.value;
+    const username = usernameInput.value.trim();
     const password = passwordInput.value;
+
+    errorMessage.textContent = "";
+
+    if (!username || !password) {
+        errorMessage.textContent = "Username and password are required";
+        return;
+    }
 
     const credentials = btoa(`${username}:${password}`);
 
-    console.log(username);
-    console.log(password);
-    console.log(credentials);
+    try {
+        const response = await fetch("https://learn.reboot01.com/api/auth/signin", {
 
-    fetch("https://learn.reboot01.com/api/auth/signin", {
+            method: "POST",
 
-        method: "POST",
+            headers: {
+                "Authorization": `Basic ${credentials}`,
+                "Content-Type": "application/json"
+            }
 
-        headers: {
-            "Authorization": `Basic ${credentials}`,
-            "Content-Type": "application/json"
-        }
+        });
 
-    })
-
-    .then(response => response.json())
-
-    .then(data => {
-
-        console.log(data);
-
-
-        if (data) {
-
-            localStorage.setItem("token", data);
-
-            window.location.href = "profile.html";
-
-
-        } else {
-
+        if (!response.ok) {
             errorMessage.textContent = "Invalid username or password";
-
+            return;
         }
 
-    })
+        const token = await response.json();
 
-    .catch(error => {
+        if (typeof token !== "string" || !token) {
+            errorMessage.textContent = "Invalid username or password";
+            return;
+        }
 
-        console.log(error);
+        localStorage.setItem("token", token);
+        window.location.href = "profile.html";
 
+    } catch (error) {
+        console.error("Login request failed:", error);
         errorMessage.textContent = "Something went wrong";
-
-    });
+    }
 
 });
