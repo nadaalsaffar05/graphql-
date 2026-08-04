@@ -44,3 +44,7 @@ The project uses these Reboot endpoints:
 
 - `https://learn.reboot01.com/api/auth/signin`
 - `https://learn.reboot01.com/api/graphql-engine/v1/graphql`
+
+## XP note
+
+The XP total in this dashboard may be different from the total shown on Intra. Intra excludes many checkpoint exercises and the full Go piscine, while this project includes those XP transactions in its calculation.
