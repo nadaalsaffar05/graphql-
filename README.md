@@ -4,6 +4,12 @@ A small profile dashboard made with HTML, CSS, JavaScript, and GraphQL.
 
 After signing in with a Reboot account, the page shows the student's profile information, XP, completed projects, audit ratio, level, charts, and recent project grades.
 
+## Live Demo
+
+The project is deployed with GitHub Pages and can be viewed online without any local setup:
+
+**https://nadaalsaffar05.github.io/graphql-**
+
 ## Features
 
 - Login with username/email and password
@@ -14,6 +20,10 @@ After signing in with a Reboot account, the page shows the student's profile inf
 - Recent project grades table
 - Responsive layout for desktop and mobile
 - Logout button
+
+## XP Note
+
+The XP total shown in this dashboard may differ from the total displayed on Intra. Intra excludes many checkpoint exercises and the full Go Piscine from its XP calculation, while this project includes those XP transactions when calculating the total XP.
 
 ## How to run it
 
@@ -29,7 +39,7 @@ Do not put your password or token in the code. The token is saved in the browser
 - `index.html`: login page
 - `profile.html`: dashboard page
 - `css/`
-  - `login.css`: login-page styles
+  - `login.css`: login page styles
   - `profile.css`: dashboard styles
 - `js/`
   - `auth.js`: sign-in logic
