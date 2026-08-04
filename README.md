@@ -21,7 +21,6 @@ The project is deployed with GitHub Pages and can be viewed online without any l
 - Responsive layout for desktop and mobile
 - Logout button
 
-
 ## How to run it
 
 1. Clone or download this repository.
