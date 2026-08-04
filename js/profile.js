@@ -59,17 +59,18 @@ async function loadXp() {
     const query = `
    {
   transaction(
-    where: {
-      type: { _eq: "xp" }
-      _or: [
-        { object: { type: { _eq: "project" } } }
-        { object: { type: { _eq: "piscine" } } }
-        {
-          object: { type: { _eq: "exercise" } }
-          path: { _ilike: "%checkpoint%" }
-        }
-      ]
-    }
+  where: {
+  type: { _eq: "xp" }
+  createdAt: { _gte: "2025-09-08T00:00:00Z" }
+  _or: [
+    { object: { type: { _eq: "project" } } }
+    { object: { type: { _eq: "piscine" } } }
+   {
+  object: { type: { _eq: "exercise" } }
+  path: { _ilike: "%/checkpoint/%" }
+   }
+  ]
+}
     order_by: { createdAt: desc }
   ) {
     id
