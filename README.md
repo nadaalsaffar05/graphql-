@@ -26,20 +26,17 @@ Do not put your password or token in the code. The token is saved in the browser
 
 ## Project structure
 
-```text
-Graphql/
-|-- login.html          # Login page
-|-- profile.html        # Dashboard page
-|-- css/
-|   |-- login.css
-|   `-- profile.css
-|-- js/
-|   |-- auth.js         # Sign-in logic
-|   |-- graphql.js      # GraphQL request helper
-|   |-- profile.js      # Loads profile data
-|   `-- charts.js       # SVG charts
-`-- assets/images/      # Page images
-```
+- `login.html`: login page
+- `profile.html`: dashboard page
+- `css/`
+  - `login.css`: login-page styles
+  - `profile.css`: dashboard styles
+- `js/`
+  - `auth.js`: sign-in logic
+  - `graphql.js`: GraphQL request helper
+  - `profile.js`: loads profile data
+  - `charts.js`: SVG charts
+- `assets/images/`: page images
 
 ## API
 
