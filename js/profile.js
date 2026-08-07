@@ -1,7 +1,11 @@
 const savedToken = localStorage.getItem("token");
 
-if (!savedToken) {
+if (!savedToken || !checkTokenExpiry()) {
     window.location.href = "index.html";
+}
+
+if (!checkTokenExpiry()) {
+    throw new Error("Token expired");
 }
 
 const usernameElement = document.getElementById("username");
@@ -14,6 +18,8 @@ const gradesTableElement = document.getElementById("grades-table");
 const logoutButton = document.getElementById("logout-btn");
 
 let userId;
+
+
 
 function formatBytes(bytes) {
     if (bytes === 0) return "0 Bytes";
@@ -225,17 +231,18 @@ async function loadAudit() {
 
 async function loadCurrentLevel() {
     const query = `
-    {
-        transaction(
-            where: { type: { _eq: "level" } }
-            order_by: [ { createdAt: desc }
-            { amount: desc }
-]
-            limit: 1
-        ) {
-            amount
-        }
-    }`;
+{
+  transaction(
+    where: {
+      type: { _eq: "level" }
+      path: { _ilike: "%/bahrain/bh-module/%" }
+    }
+    order_by: { createdAt: desc }
+    limit: 1
+  ) {
+    amount
+  }
+}`;
 
     const response = await fetchGraphQL(query);
     const transactions = response.data.transaction;
