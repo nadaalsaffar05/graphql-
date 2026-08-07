@@ -233,14 +233,13 @@ async function loadCurrentLevel() {
     const query = `
 {
   transaction(
-    where: {
-      type: { _eq: "level" }
-      path: { _ilike: "%/bahrain/bh-module/%" }
-    }
+    where: { type: { _eq: "level" } }
     order_by: { createdAt: desc }
-    limit: 1
+    limit: 20
   ) {
     amount
+    path
+    createdAt
   }
 }`;
 
