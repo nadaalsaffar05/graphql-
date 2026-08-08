@@ -15,7 +15,7 @@ The project is deployed with GitHub Pages and can be viewed online without any l
 - Login with username/email and password
 - GraphQL requests with the saved authentication token
 - Total XP with an XP progress chart
-- Project pass/fail/pending chart
+- Project pass/fail chart
 - Completed-project count, audit ratio, and current level
 - Recent project grades table
 - Responsive layout for desktop and mobile

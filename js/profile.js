@@ -141,7 +141,6 @@ async function loadProjects() {
     const uniqueProjects = new Map();
 
     let failedProjects = 0;
-    let pendingProjects = 0;
 
     projects.forEach(project => {
         if (!project.object || project.object.type !== "project") {
@@ -150,13 +149,11 @@ async function loadProjects() {
 
         const projectName = project.object.name;
 
-        if (project.grade >= 1) {
-            completedProjects.add(projectName);
-        } else if (project.grade === 0) {
-            failedProjects++;
-        } else {
-            pendingProjects++;
-        }
+     if (project.grade >= 1) {
+     completedProjects.add(projectName);
+    } else if (project.grade === 0) {
+    failedProjects++;
+    }
 
         if (!uniqueProjects.has(projectName)) {
             uniqueProjects.set(projectName, project);
@@ -167,8 +164,7 @@ async function loadProjects() {
 
     drawProjectChart({
         passed: completedProjects.size,
-        failed: failedProjects,
-        pending: pendingProjects
+        failed: failedProjects
     });
 
     gradesTableElement.innerHTML = "";
@@ -176,6 +172,8 @@ async function loadProjects() {
     const recentProjects = Array.from(uniqueProjects.values());
 
     recentProjects.forEach(project => {
+    if (project.grade === null) return;
+
         const row = document.createElement("tr");
         const projectCell = document.createElement("td");
         const gradeCell = document.createElement("td");
@@ -184,9 +182,7 @@ async function loadProjects() {
         projectCell.textContent = project.object.name;
         gradeCell.textContent = project.grade;
 
-        if (project.grade === null) {
-            statusCell.textContent = "Pending";
-        } else if (project.grade >= 1) {
+        if  (project.grade >= 1) {
             statusCell.textContent = "Passed";
         } else {
             statusCell.textContent = "Failed";
@@ -233,13 +229,17 @@ async function loadCurrentLevel() {
     const query = `
 {
   transaction(
-    where: { type: { _eq: "level" } }
+    where: {
+      type: { _eq: "level" }
+      path: {
+        _ilike: "%/bahrain/bh-module/%"
+        _nlike: "%/piscine/%"
+      }
+    }
     order_by: { createdAt: desc }
-    limit: 20
+    limit: 1
   ) {
     amount
-    path
-    createdAt
   }
 }`;
 

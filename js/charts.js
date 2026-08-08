@@ -21,10 +21,6 @@ function drawProjectChart(projectData) {
             label: "Failed",
             value: projectData.failed
         },
-        {
-            label: "Pending",
-            value: projectData.pending
-        }
     ];
 
 
