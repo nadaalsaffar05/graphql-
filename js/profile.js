@@ -233,7 +233,7 @@ async function loadCurrentLevel() {
       type: { _eq: "level" }
       path: {
         _ilike: "%/bahrain/bh-module/%"
-        _nlike: "%/piscine/%"
+        _nlike: "%/piscine-%"
       }
     }
     order_by: { createdAt: desc }
