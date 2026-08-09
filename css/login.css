@@ -92,18 +92,17 @@ button:active {
         width: 90vw;
         max-width: none;
         min-height: 450px;
-        padding: 80px 30px 40px;
     }
 
     h1 {
-        font-size: 28px;
-        margin-bottom: 28px;
+        font-size: 32px;
+        margin-bottom: 35px;
     }
 
     input,
     button {
-        padding: 15px;
-        font-size: 16px;
-        margin-top: 14px;
+        padding: 18px;
+        font-size: 18px;
+        margin-top: 18px;
     }
 }
