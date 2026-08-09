@@ -89,9 +89,10 @@ button:active {
 
 @media (max-width: 768px) {
     .login-container {
-        width: 90vw;
+        width: 95vw;
         max-width: none;
-        min-height: 450px;
+        min-height: 550px;
+        padding: 100px 40px 50px;
     }
 
     h1 {
