@@ -231,15 +231,18 @@ async function loadCurrentLevel() {
   transaction(
     where: {
       type: { _eq: "level" }
-      path: {
-        _ilike: "%/bahrain/bh-module/%"
-        _nlike: "%/piscine/%"
-      }
+      object: { type: { _eq: "project" } }
     }
-    order_by: { createdAt: desc }
+    order_by: { amount: desc }
     limit: 1
   ) {
     amount
+    createdAt
+    object {
+      id
+      name
+      type
+    }
   }
 }`;
 
