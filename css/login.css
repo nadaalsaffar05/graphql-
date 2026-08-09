@@ -86,9 +86,39 @@ button:active {
     margin: 12px 0 0;
     color: #bd3f79;
 }
-@media (max-width: 800px) {
+
+@media (max-width: 600px) {
+
     .login-container {
-        width: 100%;
-        padding: 78px 28px 38px;
+
+        width: 96%;
+
+        max-width: none;
+
+        min-height: 500px;
+
+        padding: 90px 35px 45px;
+
     }
+
+    h1 {
+
+        font-size: 30px;
+
+        margin-bottom: 32px;
+
+    }
+
+    input,
+
+    button {
+
+        padding: 17px;
+
+        font-size: 18px;
+
+        margin-top: 16px;
+
+    }
+
 }
