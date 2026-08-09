@@ -88,7 +88,7 @@ button:active {
 }
 @media (max-width: 600px) {
     .login-container {
-        width: 94%;
+        width: 97%;
         padding: 78px 28px 38px;
     }
 }
