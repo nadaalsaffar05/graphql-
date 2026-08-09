@@ -94,4 +94,16 @@ button:active {
         min-height: 550px;
         padding: 100px 40px 50px;
     }
+
+    h1 {
+        font-size: 32px;
+        margin-bottom: 35px;
+    }
+
+    input,
+    button {
+        padding: 18px;
+        font-size: 18px;
+        margin-top: 18px;
+    }
 }
