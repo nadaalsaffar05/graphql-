@@ -231,14 +231,7 @@ async function loadCurrentLevel() {
   transaction(
     where: {
       type: { _eq: "level" }
-<<<<<<< HEAD
       object: { type: { _eq: "project" } }
-=======
-      path: {
-        _ilike: "%/bahrain/bh-module/%"
-        _nlike: "%/piscine-%"
-      }
->>>>>>> 358dadf1da2fd0d284db9dfe358fdf211f92c54f
     }
     order_by: { amount: desc }
     limit: 1
