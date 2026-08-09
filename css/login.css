@@ -91,19 +91,19 @@ button:active {
     .login-container {
         width: 90vw;
         max-width: none;
-        min-height: 550px;
-        padding: 100px 40px 50px;
+        min-height: 450px;
+        padding: 80px 30px 40px;
     }
 
     h1 {
-        font-size: 32px;
-        margin-bottom: 35px;
+        font-size: 28px;
+        margin-bottom: 28px;
     }
 
     input,
     button {
-        padding: 18px;
-        font-size: 18px;
-        margin-top: 18px;
+        padding: 15px;
+        font-size: 16px;
+        margin-top: 14px;
     }
 }
