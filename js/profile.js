@@ -4,9 +4,6 @@ if (!savedToken || !checkTokenExpiry()) {
     window.location.href = "index.html";
 }
 
-if (!checkTokenExpiry()) {
-    throw new Error("Token expired");
-}
 
 const usernameElement = document.getElementById("username");
 const userIdElement = document.getElementById("user-id");
