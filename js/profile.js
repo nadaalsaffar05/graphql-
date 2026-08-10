@@ -4,7 +4,6 @@ if (!savedToken || !checkTokenExpiry()) {
     window.location.href = "index.html";
 }
 
-
 const usernameElement = document.getElementById("username");
 const userIdElement = document.getElementById("user-id");
 const xpElement = document.getElementById("xp-value");
@@ -16,12 +15,12 @@ const logoutButton = document.getElementById("logout-btn");
 
 let userId;
 
-
-
 function formatBytes(bytes) {
     if (bytes === 0) return "0 Bytes";
+
     const units = ["Bytes", "KB", "MB", "GB", "TB"];
     const index = Math.floor(Math.log(bytes) / Math.log(1000));
+
     return `${Math.round(bytes / Math.pow(1000, index))} ${units[index]}`;
 }
 
@@ -38,6 +37,7 @@ async function loadUserData() {
 
     const response = await fetchGraphQL(query);
     const item = response.data.user[0];
+
     userId = item.id;
 
     userIdElement.textContent = item.id;
@@ -60,7 +60,6 @@ async function loadXp() {
     const startResponse = await fetchGraphQL(startQuery);
 
     if (!startResponse.data.transaction.length) {
-        console.error("Go Reloaded transaction not found");
         return;
     }
 
@@ -96,11 +95,8 @@ async function loadXp() {
     }`;
 
     const response = await fetchGraphQL(query);
-    console.log("loadXp raw response:", response);
 
     if (!response.data) {
-        console.error("loadXp GraphQL error message:", response.errors?.[0]?.message);
-        console.error("loadXp full error object:", JSON.stringify(response.errors, null, 2));
         return;
     }
 
@@ -146,11 +142,11 @@ async function loadProjects() {
 
         const projectName = project.object.name;
 
-     if (project.grade >= 1) {
-     completedProjects.add(projectName);
-    } else if (project.grade === 0) {
-    failedProjects++;
-    }
+        if (project.grade >= 1) {
+            completedProjects.add(projectName);
+        } else if (project.grade === 0) {
+            failedProjects++;
+        }
 
         if (!uniqueProjects.has(projectName)) {
             uniqueProjects.set(projectName, project);
@@ -169,7 +165,7 @@ async function loadProjects() {
     const recentProjects = Array.from(uniqueProjects.values());
 
     recentProjects.forEach(project => {
-    if (project.grade === null) return;
+        if (project.grade === null) return;
 
         const row = document.createElement("tr");
         const projectCell = document.createElement("td");
@@ -179,7 +175,7 @@ async function loadProjects() {
         projectCell.textContent = project.object.name;
         gradeCell.textContent = project.grade;
 
-        if  (project.grade >= 1) {
+        if (project.grade >= 1) {
             statusCell.textContent = "Passed";
         } else {
             statusCell.textContent = "Failed";
@@ -219,29 +215,30 @@ async function loadAudit() {
     });
 
     const auditRatio = totalDown ? totalUp / totalDown : 0;
+
     auditElement.textContent = auditRatio.toFixed(1);
 }
 
 async function loadCurrentLevel() {
     const query = `
-{
-  transaction(
-    where: {
-      type: { _eq: "level" }
-      object: { type: { _eq: "project" } }
-    }
-    order_by: { amount: desc }
-    limit: 1
-  ) {
-    amount
-    createdAt
-    object {
-      id
-      name
-      type
-    }
-  }
-}`;
+    {
+        transaction(
+            where: {
+                type: { _eq: "level" }
+                object: { type: { _eq: "project" } }
+            }
+            order_by: { amount: desc }
+            limit: 1
+        ) {
+            amount
+            createdAt
+            object {
+                id
+                name
+                type
+            }
+        }
+    }`;
 
     const response = await fetchGraphQL(query);
     const transactions = response.data.transaction;
@@ -285,7 +282,4 @@ async function loadProfile() {
 
 loadProfile();
 
-logoutButton.addEventListener("click", () => {
-    localStorage.removeItem("token");
-    window.location.href = "index.html";
-});
+logoutButton.addEventListener("click", logout);
